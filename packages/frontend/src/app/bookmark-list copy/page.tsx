@@ -92,11 +92,13 @@ export default function BookmarkList() {
           className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-xl mb-8"
           onSubmit={handleSubmit}
         >
-          <h1 className="text-3xl font-bold text-white mb-8 text-center">
+          <h1 className="text-3xl font-bold text-foreground mb-8 text-center">
             読みたい記事登録
           </h1>
 
-          <p className="text-white mb-4">後で読みたい記事を登録できます。</p>
+          <p className="text-foreground mb-4">
+            後で読みたい記事を登録できます。
+          </p>
 
           <div className="space-y-4">
             <div>
@@ -110,7 +112,7 @@ export default function BookmarkList() {
                 id="url"
                 type="url"
                 placeholder="https://example.com"
-                className="w-full px-4 py-3 bg-white/5 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-white placeholder-gray-400"
+                className="w-full px-4 py-3 bg-white/5 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-foreground placeholder-gray-400"
                 required
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
@@ -119,7 +121,7 @@ export default function BookmarkList() {
 
             <button
               type="submit"
-              className="w-full font-medium py-3 px-4 rounded-lg bg-blue-500 hover:bg-blue-600 text-white transition"
+              className="w-full font-medium py-3 px-4 rounded-lg bg-blue-500 hover:bg-blue-600 text-foreground transition"
               disabled={!url}
             >
               登録する
@@ -129,7 +131,7 @@ export default function BookmarkList() {
 
         {bookmarks.length > 0 && (
           <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-xl">
-            <h2 className="text-xl font-bold text-white mb-4">
+            <h2 className="text-xl font-bold text-foreground mb-4">
               ブックマーク一覧
             </h2>
             <ul className="space-y-4">

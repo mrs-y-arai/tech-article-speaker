@@ -8,7 +8,7 @@ const openAi = createOpenAI();
 export async function generateTTS(params: { input: string }) {
   const response = await openAi.audio.speech.create({
     model: "tts-1",
-    voice: "alloy",
+    voice: "echo",
     input: params.input,
   });
 
