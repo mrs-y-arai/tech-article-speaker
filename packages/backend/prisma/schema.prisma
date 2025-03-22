@@ -11,7 +11,7 @@ datasource db {
 model bookmarks {
   id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title      String
-  content    String
+  content    String?
   audio_path String?
   created_at DateTime @default(now()) @db.Timestamptz(6)
   updated_at DateTime @default(now()) @db.Timestamptz(6)
