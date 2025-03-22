@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec tsx src/index.ts",
+    "dev": "nodemon --exec tsx src/main.ts",
     "prisma:pull": "prisma db pull",
     "prisma:generate": "prisma generate",
     "prisma:reset": "npx prisma migrate reset",
@@ -15,10 +15,17 @@
   "license": "ISC",
   "packageManager": "pnpm@10.6.5",
   "dependencies": {
+    "@langchain/community": "^0.3.36",
     "@prisma/client": "^6.3.0",
+    "@supabase/supabase-js": "^2.49.1",
+    "@types/sanitize-html": "^2.13.0",
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "jwt-decode": "^4.0.0",
+    "langchain": "^0.3.19",
+    "openai": "^4.88.0",
+    "playwright": "^1.51.1",
+    "sanitize-html": "^2.15.0",
     "zod": "^3.24.1"
   },
   "devDependencies": {
