@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { X } from "lucide-react";
-import { SiteTitle } from "~/components/PageTitle";
 
 export default function BookmarkListLayout({
   children,
