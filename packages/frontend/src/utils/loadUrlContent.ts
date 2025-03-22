@@ -36,7 +36,6 @@ export async function loadUrlContent(url: string) {
 
         // 本文のテキストを取得
         const mainContent = document.body.innerHTML;
-
         // 余分な空白や改行を整理
         return mainContent
           .replace(/\s+/g, " ")
@@ -53,16 +52,17 @@ export async function loadUrlContent(url: string) {
       return sanitizeContent;
     },
   });
+
   const result = await htmlWebBaseLoader.load();
 
   const summarizedContent = await summarize(result[0].pageContent);
 
-  const ttsPath = "";
-  // ? await generateTTS({ input: summarizedContent })
-  // : "";
+  // const ttsPath = summarizedContent
+  //   ? await generateTTS({ input: summarizedContent })
+  //   : "";
 
   return {
     summarizedContent,
-    ttsPath,
+    ttsPath: "",
   };
 }

@@ -1,9 +1,9 @@
 {
   "name": "tech-article-speaker",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "dev:frontend": "pnpm --filter frontend dev"
+    "dev:frontend": "pnpm --filter frontend dev",
+    "dev:backend": "pnpm --filter backend dev"
   },
   "keywords": [],
   "author": "",
