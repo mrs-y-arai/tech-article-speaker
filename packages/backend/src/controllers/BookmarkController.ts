@@ -7,6 +7,7 @@ import {
   GetBookmarkRequest,
   SummarizeBookmarkRequest,
 } from "~/types/Request/Bookmark.js";
+import { snakeToCamel } from "~/utils/snakeToCamel.js";
 
 export class BookmarkController {
   private bookmarkRepository: BookmarkRepository;
@@ -40,7 +41,9 @@ export class BookmarkController {
       limit: Number(limit),
     });
 
-    res.status(200).json(bookmarks);
+    const _bookmarks = snakeToCamel(bookmarks);
+
+    res.status(200).json(_bookmarks);
   };
 
   public getBookmark = async (req: GetBookmarkRequest, res: Response) => {
