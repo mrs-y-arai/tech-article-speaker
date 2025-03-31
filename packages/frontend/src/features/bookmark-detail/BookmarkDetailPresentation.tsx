@@ -7,6 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "~/components/ui/accordion";
+import { formatDate } from "~/libs/date";
 
 type Props = {
   bookmark: Bookmark;
@@ -33,19 +34,19 @@ export function BookmarkDetailPresentation({ bookmark }: Props) {
         </Link>
       </div>
       <div className="mb-6">
-        <div className="flex items-center justify-between mb-2">
+        <div className="flex items-cente gap-x-2 justify-between mb-2">
           <h1 className="text-2xl font-bold">{bookmark.title}</h1>
           <a
             href={bookmark.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 hover:text-primary underline transition-colors"
+            className="flex shrink-0 items-center gap-1 hover:text-primary underline transition-colors"
           >
             元記事 <ExternalLink className="h-4 w-4" />
           </a>
         </div>
         <p className="text-muted-foreground">
-          {bookmark.createdAt.toDateString()}
+          {formatDate(bookmark.createdAt)}
         </p>
       </div>
 
@@ -59,7 +60,7 @@ export function BookmarkDetailPresentation({ bookmark }: Props) {
         </div>
       )}
 
-      {bookmark.summary && (
+      {bookmark.content && (
         <div className="mb-8">
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="summary">
@@ -69,7 +70,7 @@ export function BookmarkDetailPresentation({ bookmark }: Props) {
               <AccordionContent>
                 <div className="p-4">
                   <p className="whitespace-pre-wrap leading-relaxed">
-                    {bookmark.summary}
+                    {bookmark.content}
                   </p>
                 </div>
               </AccordionContent>

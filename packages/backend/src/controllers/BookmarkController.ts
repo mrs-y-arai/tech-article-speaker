@@ -8,28 +8,32 @@ import {
   SummarizeBookmarkRequest,
 } from "~/types/Request/Bookmark.js";
 import { snakeToCamel } from "~/utils/snakeToCamel.js";
+import { CreateBookmarkUseCase } from "~/services/useCase/createBookmark";
 
 export class BookmarkController {
   private bookmarkRepository: BookmarkRepository;
+  private createBookmarkUseCase: CreateBookmarkUseCase;
   private summarizeBookmarkUseCase: SummarizeBookmarkUseCase;
 
   constructor() {
     this.bookmarkRepository = new BookmarkRepository();
+    this.createBookmarkUseCase = new CreateBookmarkUseCase(
+      this.bookmarkRepository
+    );
     this.summarizeBookmarkUseCase = new SummarizeBookmarkUseCase();
   }
 
   public createBookmark = async (req: PostBookmarkRequest, res: Response) => {
-    const { title, content, url, userId, audioPath } = req.body;
+    const { url } = req.body;
 
-    const bookmark = await this.bookmarkRepository.create({
-      title,
-      content,
+    await this.createBookmarkUseCase.execute({
       url,
-      userId,
-      audioPath,
+      userId: "c95926c2-9436-4441-99b5-8f9955b653ec",
     });
 
-    res.status(201).json(bookmark);
+    res.status(201).json({
+      isSuccess: true,
+    });
   };
 
   public getBookmarks = async (req: GetBookmarksRequest, res: Response) => {
@@ -56,10 +60,15 @@ export class BookmarkController {
     });
 
     if (!bookmark) {
-      return res.status(404).json({ error: "Bookmark not found" });
+      return res
+        .status(404)
+        .json({ isSuccess: false, apiError: "Bookmark not found" });
     }
 
-    res.status(200).json(bookmark);
+    const _bookmark = snakeToCamel(bookmark);
+    console.log("_bookmark", _bookmark);
+
+    res.status(200).json(_bookmark);
   };
 
   public summarizeBookmark = async (
@@ -70,14 +79,37 @@ export class BookmarkController {
       const { id } = req.params;
       const { userId } = req.body;
 
-      await this.summarizeBookmarkUseCase.summarizeBookmark({
+      await this.summarizeBookmarkUseCase.execute({
         bookmarkId: id,
         userId,
       });
 
-      res.status(200).json({ message: "Bookmark summarized" });
+      res.status(200).json({ isSuccess: true });
     } catch (error) {
-      res.status(500).json({ error: "Failed to summarize bookmark" });
+      res
+        .status(500)
+        .json({ isSuccess: false, apiError: "Failed to summarize bookmark" });
+    }
+  };
+
+  public deleteBookmark = async (
+    req: SummarizeBookmarkRequest,
+    res: Response
+  ) => {
+    try {
+      const { id } = req.params;
+      const { userId } = req.body;
+
+      await this.bookmarkRepository.delete({
+        id,
+        userId,
+      });
+
+      res.status(200).json({ isSuccess: true });
+    } catch (error) {
+      res
+        .status(500)
+        .json({ isSuccess: false, apiError: "Failed to delete bookmark" });
     }
   };
 }

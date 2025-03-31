@@ -4,7 +4,6 @@ export type Bookmark = {
   url: string;
   createdAt: Date;
   updatedAt: Date;
-  summary?: string;
+  content?: string;
   audioPath?: string;
-  isLoading?: boolean;
 };

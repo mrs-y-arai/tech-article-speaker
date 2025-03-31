@@ -36,6 +36,7 @@
     "@types/jwt-decode": "^2.2.1",
     "@types/node": "^22.10.10",
     "@vitest/coverage-v8": "^3.0.8",
+    "cheerio": "^1.0.0",
     "dotenv": "^16.4.7",
     "dotenv-cli": "^8.0.0",
     "eslint": "^9.21.0",

@@ -1,7 +1,9 @@
 import { Bookmark } from "~/types/Bookmark";
 import Link from "next/link";
 import { BookmarkAddForm } from "~/components/BookmarkAddForm";
-import { Edit2, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
+import { formatDate } from "~/libs/date";
+import { DeleteDialog } from "./components/DeleteDialog";
 
 type Props = {
   bookmarks: Bookmark[];
@@ -21,19 +23,16 @@ export function HomePresentation({ bookmarks }: Props) {
                   <Link
                     href={`/bookmarks/${bookmark.id}`}
                     prefetch
-                    className="transition line-clamp-1 font-bold underline hover:text-blue-400"
+                    className="transition line-clamp-2 lg:line-clamp-1 font-bold underline hover:text-blue-400 break-all"
                   >
-                    {bookmark.url}
+                    {bookmark.title}
                   </Link>
-                  <span className="text-gray-500">2025.01.05</span>
+                  <span className="text-gray-500">
+                    {formatDate(bookmark.createdAt)}
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <button className="p-2 hover:bg-gray-100/10 rounded-full">
-                    <Edit2 className="h-5 w-5" />
-                  </button>
-                  <button className="p-2 hover:bg-gray-100/10 rounded-full">
-                    <Trash2 className="h-5 w-5" />
-                  </button>
+                  <DeleteDialog id={bookmark.id} />
                 </div>
               </div>
             </li>
