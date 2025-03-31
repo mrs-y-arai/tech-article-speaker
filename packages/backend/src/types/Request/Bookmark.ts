@@ -4,11 +4,7 @@ export type PostBookmarkRequest = Request<
   unknown,
   unknown,
   {
-    title: string;
-    content?: string;
     url: string;
-    userId: string;
-    audioPath?: string;
   },
   unknown
 >;
@@ -36,6 +32,17 @@ export type GetBookmarkRequest = Request<
 >;
 
 export type SummarizeBookmarkRequest = Request<
+  {
+    id: string;
+  },
+  unknown,
+  {
+    userId: string;
+  },
+  unknown
+>;
+
+export type DeleteBookmarkRequest = Request<
   {
     id: string;
   },

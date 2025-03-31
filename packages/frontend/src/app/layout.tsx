@@ -26,12 +26,14 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen p-4 bg-gray-800`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-gray-800`}
       >
-        <header className="max-w-4xl mx-auto mb-8">
-          <SiteTitle />
-        </header>
-        <main className="max-w-[1024px] mx-auto px-4 w-full">{children}</main>
+        <div className="p-4">
+          <header className="max-w-4xl mx-auto mb-8">
+            <SiteTitle />
+          </header>
+          <main className="max-w-[1024px] mx-auto px-4 w-full">{children}</main>
+        </div>
       </body>
     </html>
   );

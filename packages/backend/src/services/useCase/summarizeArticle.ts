@@ -13,10 +13,7 @@ export class SummarizeBookmarkUseCase {
     this.storageRepository = new StorageRepository();
   }
 
-  public async summarizeBookmark(params: {
-    bookmarkId: string;
-    userId: string;
-  }) {
+  public async execute(params: { bookmarkId: string; userId: string }) {
     const bookmark = await this.bookmarkRepository.findById({
       id: params.bookmarkId,
       userId: params.userId,

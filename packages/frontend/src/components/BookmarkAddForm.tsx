@@ -5,6 +5,7 @@ import { cn } from "~/libs/utils";
 import { Button } from "~/components/ui/button";
 import { Plus } from "lucide-react";
 import { Input } from "~/components/ui/input";
+import { createBookmark } from "~/actions/createBookmark";
 
 type Props = {
   className?: string;
@@ -12,9 +13,22 @@ type Props = {
 
 export function BookmarkAddForm({ className }: Props) {
   const [url, setUrl] = useState("");
+  const [isProcessing, setIsProcessing] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsProcessing(true);
+    const formData = new FormData(e.currentTarget);
+    const result = await createBookmark(formData);
+
+    if (!result.isSuccess) {
+      console.error("result.errors", result.errors);
+      console.error("result.apiError", result.apiError);
+    }
+
+    alert("追加しました");
+    setUrl("");
+    setIsProcessing(false);
   };
 
   return (
@@ -30,8 +44,9 @@ export function BookmarkAddForm({ className }: Props) {
         required
         value={url}
         onChange={(e) => setUrl(e.target.value)}
+        name="url"
       />
-      <Button className="h-full shrink-0">
+      <Button className="h-full shrink-0" isProcessing={isProcessing}>
         <Plus className="size-4" />
         追加
       </Button>

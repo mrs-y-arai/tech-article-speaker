@@ -1,9 +1,6 @@
 import { Router } from "express";
 import { BookmarkController } from "~/controllers/BookmarkController";
-import {
-  GetBookmarkRequest,
-  SummarizeBookmarkRequest,
-} from "~/types/Request/Bookmark";
+import { GetBookmarkRequest } from "~/types/Request/Bookmark";
 
 export const BookmarkRouter = Router();
 
@@ -17,4 +14,7 @@ BookmarkRouter.get("/:id", async (req, res) => {
 });
 BookmarkRouter.post("/:id/summarize", async (req, res) => {
   await bookmarkController.summarizeBookmark(req, res);
+});
+BookmarkRouter.delete("/:id", async (req, res) => {
+  await bookmarkController.deleteBookmark(req, res);
 });

@@ -1,31 +1,13 @@
 import { HomePresentation } from "~/features/home/HomePresentation";
+import { fetchHelper } from "~/utils/fetchHelper";
 import { Bookmark } from "~/types/Bookmark";
 
 export async function HomeContainer() {
-  const bookmarks: Bookmark[] = [
+  const response = await fetchHelper<Bookmark[]>(
+    `/bookmarks?userId=c95926c2-9436-4441-99b5-8f9955b653ec&page=1&limit=10`,
     {
-      id: "1",
-      title: "Bookmark Speaker",
-      url: "https://example.com",
-      summary: "This is a test summary",
-      audioPath: "https://example.com/audio.mp3",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      isLoading: false,
-    },
-    {
-      id: "2",
-      title: "Bookmark Speaker",
-      url: "https://example.com/2",
-      summary: "This is a test summary 2",
-      audioPath: "https://example.com/audio2.mp3",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      isLoading: false,
-    },
-  ];
-
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  return <HomePresentation bookmarks={bookmarks} />;
+      method: "GET",
+    }
+  );
+  return <HomePresentation bookmarks={response} />;
 }
