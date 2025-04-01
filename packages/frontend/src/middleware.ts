@@ -2,7 +2,7 @@ import { NextRequest } from "next/server";
 import { updateSession } from "./utils/middleware/supabase";
 
 export async function middleware(request: NextRequest) {
-  let sessionResponse = await updateSession(request);
+  const sessionResponse = await updateSession(request);
   return sessionResponse;
 }
 

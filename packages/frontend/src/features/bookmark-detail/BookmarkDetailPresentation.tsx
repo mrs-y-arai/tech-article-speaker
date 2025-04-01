@@ -1,6 +1,6 @@
 import { Bookmark } from "~/types/Bookmark";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, ExternalLink, Home } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
