@@ -1,5 +1,5 @@
-import { BookmarkRepository } from "~/repositories/BookmarkRepository";
-import { loadUrlContent } from "~/utils/loadUrlContent";
+import { BookmarkRepository } from "~/repositories/BookmarkRepository.js";
+import { loadUrlContent } from "~/utils/loadUrlContent.js";
 import { load } from "cheerio";
 
 export class CreateBookmarkUseCase {

@@ -1,5 +1,5 @@
 import { type PrismaClient } from "@prisma/client";
-import prisma from "~/infrastructure/database/prisma";
+import prisma from "~/infrastructure/database/prisma.js";
 
 export class UserRepository {
   private readonly prisma: PrismaClient;

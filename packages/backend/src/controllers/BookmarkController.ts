@@ -8,7 +8,7 @@ import {
   SummarizeBookmarkRequest,
 } from "~/types/Request/Bookmark.js";
 import { snakeToCamel } from "~/utils/snakeToCamel.js";
-import { CreateBookmarkUseCase } from "~/services/useCase/createBookmark";
+import { CreateBookmarkUseCase } from "~/services/useCase/createBookmark.js";
 
 export class BookmarkController {
   private bookmarkRepository: BookmarkRepository;

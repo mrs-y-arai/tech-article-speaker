@@ -1,4 +1,4 @@
-import { createOpenAI } from "~/infrastructure/openai";
+import { createOpenAI } from "~/infrastructure/openai/index.js";
 
 const openAi = createOpenAI();
 

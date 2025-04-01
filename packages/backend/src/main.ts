@@ -1,10 +1,3 @@
-// 想定エンドポイント
-// ブックマーク一覧取得 済
-// ブックマーク詳細取得 済
-// 要約・音声生成 済
-// ブックマーク作成 済
-// ユーザー詳細取得 済
-
 import express from "express";
 import { BookmarkRouter } from "~/routes/BookmarkRoute.js";
 import cors from "cors";

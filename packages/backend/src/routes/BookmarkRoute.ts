@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { BookmarkController } from "~/controllers/BookmarkController";
+import { BookmarkController } from "~/controllers/BookmarkController.js";
 import {
   GetBookmarkRequest,
   SummarizeBookmarkRequest,
   DeleteBookmarkRequest,
-} from "~/types/Request/Bookmark";
-import { authMiddleware } from "~/middleware/authMiddleware";
+} from "~/types/Request/Bookmark.js";
+import { authMiddleware } from "~/middleware/authMiddleware.js";
 
 export const BookmarkRouter = Router();
 
