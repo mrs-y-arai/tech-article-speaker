@@ -28,7 +28,8 @@ export function DeleteDialog({ id }: Props) {
       await deleteBookmark(id);
       alert("削除しました");
       setIsOpen(false);
-    } catch (error) {
+    } catch (error: any) {
+      console.error(error);
       alert("削除に失敗しました");
     } finally {
       setIsDeleting(false);
