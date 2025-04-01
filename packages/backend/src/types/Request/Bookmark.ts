@@ -6,7 +6,9 @@ export type PostBookmarkRequest = Request<
   {
     url: string;
   },
-  unknown
+  {
+    userId: string;
+  }
 >;
 
 export type GetBookmarksRequest = Request<
@@ -36,10 +38,10 @@ export type SummarizeBookmarkRequest = Request<
     id: string;
   },
   unknown,
+  unknown,
   {
     userId: string;
-  },
-  unknown
+  }
 >;
 
 export type DeleteBookmarkRequest = Request<
@@ -47,8 +49,8 @@ export type DeleteBookmarkRequest = Request<
     id: string;
   },
   unknown,
+  unknown,
   {
     userId: string;
-  },
-  unknown
+  }
 >;

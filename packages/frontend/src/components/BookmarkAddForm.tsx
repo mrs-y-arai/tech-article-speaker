@@ -25,8 +25,6 @@ export function BookmarkAddForm({ className }: Props) {
       console.error("result.errors", result.errors);
       console.error("result.apiError", result.apiError);
     }
-
-    alert("追加しました");
     setUrl("");
     setIsProcessing(false);
   };

@@ -19,13 +19,10 @@ export async function verifyCode(
   state: VerifyCodeFormState,
   formData: FormData
 ) {
-  console.log("verifyCode");
   const supabaseAuth = await createAuthClient();
 
   const email = formData.get("email");
-  console.log("email", email);
   const code = formData.get("code");
-  console.log("code", code);
 
   const schema = z.object({
     email: z.string().email("メールアドレスの形式で入力してください"),

@@ -1,6 +1,6 @@
 "use server";
 
-import { fetchHelper } from "~/utils/fetchHelper";
+import { fetchHelperServer } from "~/utils/fetchHelperServer";
 import { createBookmarkRequestSchema } from "~/schemas/request/bookmark";
 import { createBookmarkResponseSchema } from "~/schemas/response/bookmark";
 import { z } from "zod";
@@ -35,7 +35,7 @@ export async function createBookmark(
     };
   }
 
-  const response = await fetchHelper("/bookmarks", {
+  const response = await fetchHelperServer("/bookmarks", {
     method: "POST",
     headers: {
       "Content-Type": "application/json", // Content-Typeヘッダーを追加

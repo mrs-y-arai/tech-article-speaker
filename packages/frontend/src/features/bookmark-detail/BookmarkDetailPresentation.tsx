@@ -50,23 +50,24 @@ export function BookmarkDetailPresentation({ bookmark }: Props) {
         </p>
       </div>
 
-      {bookmark.audioPath && (
-        <div className="mb-8">
-          <h2 className="text-lg font-bold mb-2">音声要約</h2>
+      <div className="mb-8">
+        <h2 className="text-lg font-bold mb-4">音声要約</h2>
+        {bookmark.audioPath ? (
           <audio controls className="w-full">
             <source src={bookmark.audioPath} type="audio/mp3" />
             お使いのブラウザは音声再生に対応していません。
           </audio>
-        </div>
-      )}
+        ) : (
+          <div className="text-white">音声要約生成中</div>
+        )}
+      </div>
 
-      {bookmark.content && (
-        <div className="mb-8">
+      <div className="mb-8">
+        <h2 className="text-lg font-bold mb-4">音声要約</h2>
+        {bookmark.content ? (
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="summary">
-              <AccordionTrigger className="text-lg font-bold">
-                テキスト要約
-              </AccordionTrigger>
+              <AccordionTrigger>テキスト要約</AccordionTrigger>
               <AccordionContent>
                 <div className="p-4">
                   <p className="whitespace-pre-wrap leading-relaxed">
@@ -76,12 +77,15 @@ export function BookmarkDetailPresentation({ bookmark }: Props) {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-        </div>
-      )}
+        ) : (
+          <div className="text-white">テキスト要約生成中</div>
+        )}
+      </div>
 
       <Link
         href="/"
         className="text-white underline transition-colors hover:text-primary w-fit mx-auto flex items-center gap-2 rounded-lg p-2"
+        prefetch
       >
         TOPへ戻る
       </Link>

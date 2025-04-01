@@ -25,10 +25,11 @@ export class BookmarkController {
 
   public createBookmark = async (req: PostBookmarkRequest, res: Response) => {
     const { url } = req.body;
+    const { userId } = req.query;
 
     await this.createBookmarkUseCase.execute({
       url,
-      userId: "c95926c2-9436-4441-99b5-8f9955b653ec",
+      userId,
     });
 
     res.status(201).json({
@@ -66,7 +67,6 @@ export class BookmarkController {
     }
 
     const _bookmark = snakeToCamel(bookmark);
-    console.log("_bookmark", _bookmark);
 
     res.status(200).json(_bookmark);
   };
@@ -77,7 +77,7 @@ export class BookmarkController {
   ) => {
     try {
       const { id } = req.params;
-      const { userId } = req.body;
+      const { userId } = req.query;
 
       await this.summarizeBookmarkUseCase.execute({
         bookmarkId: id,
@@ -98,7 +98,7 @@ export class BookmarkController {
   ) => {
     try {
       const { id } = req.params;
-      const { userId } = req.body;
+      const { userId } = req.query;
 
       await this.bookmarkRepository.delete({
         id,
