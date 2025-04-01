@@ -1,10 +1,15 @@
-import { Router } from "express";
+import { Router, Response } from "express";
 import { UserController } from "~/controllers/UserController.js";
+import { authMiddleware } from "~/middleware/authMiddleware.js";
+import { GetUserRequest } from "~/types/Request/User.js";
 
 export const UserRouter = Router();
 
 const userController = new UserController();
-// TODO: userController.getUserだけで良いはずなので後で確認
-UserRouter.get("/:id", async (req, res) => {
-  await userController.getUser(req, res);
-});
+UserRouter.get(
+  "/:id",
+  authMiddleware,
+  async (req: GetUserRequest, res: Response) => {
+    await userController.getUser(req, res);
+  }
+);

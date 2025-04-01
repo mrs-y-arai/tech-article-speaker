@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon --exec tsx src/main.ts",
+    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
+    "start": "node dist/main.js",
     "prisma:pull": "prisma db pull",
     "prisma:generate": "prisma generate",
     "prisma:reset": "npx prisma migrate reset",
-    "prisma:seed": "tsx prisma/seed.ts"
+    "prisma:seed": "tsx prisma/seed.ts",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",

@@ -1,5 +1,5 @@
-import { createOpenAI } from "~/infrastructure/openai";
-import { CHAT_DEFAULT_MODEL } from "~/constants/GptModel";
+import { createOpenAI } from "~/infrastructure/openai/index.js";
+import { CHAT_DEFAULT_MODEL } from "~/constants/GptModel.js";
 
 const openAi = createOpenAI();
 

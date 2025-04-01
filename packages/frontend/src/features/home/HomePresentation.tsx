@@ -1,7 +1,6 @@
 import { Bookmark } from "~/types/Bookmark";
 import Link from "next/link";
 import { BookmarkAddForm } from "~/components/BookmarkAddForm";
-import { Trash2 } from "lucide-react";
 import { formatDate } from "~/libs/date";
 import { DeleteDialog } from "./components/DeleteDialog";
 
@@ -14,7 +13,7 @@ export function HomePresentation({ bookmarks }: Props) {
   return (
     <div>
       <BookmarkAddForm className="mb-10" />
-      {bookmarks.length > 0 && (
+      {bookmarks.length > 0 ? (
         <ul>
           {bookmarks.map((bookmark, index) => (
             <li key={index} className="text-gray-200 border-b border-gray-600">
@@ -38,6 +37,10 @@ export function HomePresentation({ bookmarks }: Props) {
             </li>
           ))}
         </ul>
+      ) : (
+        <div className="text-white font-bold text-lg text-center">
+          ブックマークがありません。追加しましょう！
+        </div>
       )}
     </div>
   );

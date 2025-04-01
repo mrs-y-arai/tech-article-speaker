@@ -1,5 +1,10 @@
 import { BookmarkDetailContainer } from "./_container/BookmarkDetailContainer";
 
-export default function BookmarkDetail({ params }: { params: { id: string } }) {
-  return <BookmarkDetailContainer id={params.id} />;
+export default async function BookmarkDetail({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const { id } = await params;
+  return <BookmarkDetailContainer id={id} />;
 }

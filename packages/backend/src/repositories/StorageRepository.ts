@@ -1,4 +1,4 @@
-import { createClient } from "~/infrastructure/supabase";
+import { createClient } from "~/infrastructure/supabase/index.js";
 import { SupabaseClient } from "@supabase/supabase-js";
 
 export class StorageRepository {

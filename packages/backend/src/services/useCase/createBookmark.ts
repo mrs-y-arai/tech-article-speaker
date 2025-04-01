@@ -1,5 +1,5 @@
-import { BookmarkRepository } from "~/repositories/BookmarkRepository";
-import { loadUrlContent } from "~/utils/loadUrlContent";
+import { BookmarkRepository } from "~/repositories/BookmarkRepository.js";
+import { loadUrlContent } from "~/utils/loadUrlContent.js";
 import { load } from "cheerio";
 
 export class CreateBookmarkUseCase {
@@ -14,7 +14,7 @@ export class CreateBookmarkUseCase {
     const $ = load(content[0].pageContent);
 
     return this.bookmarkRepository.create({
-      title: $("h1").first().text(),
+      title: $("h1").first().text() ?? params.url,
       url: params.url,
       userId: params.userId,
     });

@@ -1,20 +1,36 @@
 import { Router } from "express";
-import { BookmarkController } from "~/controllers/BookmarkController";
-import { GetBookmarkRequest } from "~/types/Request/Bookmark";
+import { BookmarkController } from "~/controllers/BookmarkController.js";
+import {
+  GetBookmarkRequest,
+  SummarizeBookmarkRequest,
+  DeleteBookmarkRequest,
+} from "~/types/Request/Bookmark.js";
+import { authMiddleware } from "~/middleware/authMiddleware.js";
 
 export const BookmarkRouter = Router();
 
 const bookmarkController = new BookmarkController();
 
-BookmarkRouter.post("/", bookmarkController.createBookmark);
-BookmarkRouter.get("/", bookmarkController.getBookmarks);
-// TODO: 型アサーションやめたい
-BookmarkRouter.get("/:id", async (req, res) => {
-  await bookmarkController.getBookmark(req as GetBookmarkRequest, res);
-});
-BookmarkRouter.post("/:id/summarize", async (req, res) => {
-  await bookmarkController.summarizeBookmark(req, res);
-});
-BookmarkRouter.delete("/:id", async (req, res) => {
-  await bookmarkController.deleteBookmark(req, res);
-});
+BookmarkRouter.post("/", authMiddleware, bookmarkController.createBookmark);
+BookmarkRouter.get("/", authMiddleware, bookmarkController.getBookmarks);
+BookmarkRouter.get(
+  "/:id",
+  authMiddleware,
+  async (req: GetBookmarkRequest, res) => {
+    await bookmarkController.getBookmark(req, res);
+  }
+);
+BookmarkRouter.post(
+  "/:id/summarize",
+  authMiddleware,
+  async (req: SummarizeBookmarkRequest, res) => {
+    await bookmarkController.summarizeBookmark(req, res);
+  }
+);
+BookmarkRouter.delete(
+  "/:id",
+  authMiddleware,
+  async (req: DeleteBookmarkRequest, res) => {
+    await bookmarkController.deleteBookmark(req, res);
+  }
+);

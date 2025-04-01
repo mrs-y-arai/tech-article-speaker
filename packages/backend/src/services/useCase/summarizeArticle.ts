@@ -1,8 +1,8 @@
-import { BookmarkRepository } from "~/repositories/BookmarkRepository";
-import { loadUrlContent } from "~/utils/loadUrlContent";
-import { summarizeText } from "~/utils/summarizeText";
-import { generateTTS } from "~/utils/tts";
-import { StorageRepository } from "~/repositories/StorageRepository";
+import { BookmarkRepository } from "~/repositories/BookmarkRepository.js";
+import { loadUrlContent } from "~/utils/loadUrlContent.js";
+import { summarizeText } from "~/utils/summarizeText.js";
+import { generateTTS } from "~/utils/tts.js";
+import { StorageRepository } from "~/repositories/StorageRepository.js";
 
 export class SummarizeBookmarkUseCase {
   private bookmarkRepository: BookmarkRepository;
