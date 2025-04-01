@@ -20,5 +20,5 @@ app.use(`${API_BASE_URL}/bookmarks`, BookmarkRouter);
 app.use(`${API_BASE_URL}/users`, UserRouter);
 
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+  console.log("Server running");
 });
