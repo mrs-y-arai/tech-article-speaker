@@ -42,8 +42,8 @@ export class BookmarkController {
 
     const bookmarks = await this.bookmarkRepository.findMany({
       userId,
-      page: Number(page),
-      limit: Number(limit),
+      page: Number(page) || 1,
+      limit: Number(limit) || 20,
     });
 
     const _bookmarks = snakeToCamel(bookmarks);
