@@ -5,11 +5,14 @@ WORKDIR /app
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
+COPY pnpm-workspace.yaml ./
+COPY package.json ./
 COPY pnpm-lock.yaml ./
-COPY packages/backend/package.json ./
-RUN pnpm install --frozen-lockfile
+COPY packages/backend/package.json ./packages/backend/
 
-COPY packages/backend .
+RUN pnpm i:backend
+
+COPY packages/backend ./packages/backend/
 
 RUN npx prisma generate
 
