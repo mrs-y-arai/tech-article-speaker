@@ -5,16 +5,23 @@ WORKDIR /app
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
+RUN mkdir -p packages/backend
+
+COPY package.json ./
 COPY pnpm-workspace.yaml ./
 COPY pnpm-lock.yaml ./
+
 COPY packages/backend/package.json ./packages/backend/package.json
 
 RUN pnpm i:backend
 
-COPY packages/backend ./packages/backend
+COPY packages/backend/src ./packages/backend/src
+COPY packages/backend/prisma ./packages/backend/prisma
+COPY packages/backend/tsconfig.json ./packages/backend/
 
+WORKDIR /app/packages/backend
 RUN npx prisma generate
-
 RUN pnpm playwright install
+RUN pnpm --filter backend build
 
-CMD ["pnpm", "--filter", "backend", "build"]
+CMD ["pnpm", "--filter", "backend", "start"]
