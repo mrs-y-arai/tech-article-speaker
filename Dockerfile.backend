@@ -24,4 +24,5 @@ RUN npx prisma generate
 RUN pnpm playwright install
 RUN pnpm --filter backend build
 
+WORKDIR /app
 CMD ["pnpm", "--filter", "backend", "start"]
