@@ -4,7 +4,9 @@
   "scripts": {
     "dev:frontend": "pnpm --filter frontend dev",
     "dev:backend": "pnpm --filter backend dev",
-    "dev": "pnpm dev:frontend & pnpm dev:backend"
+    "dev": "pnpm dev:frontend & pnpm dev:backend",
+    "i:backend": "pnpm --filter backend i",
+    "build:backend": "pnpm --filter backend build"
   },
   "keywords": [],
   "author": "",
