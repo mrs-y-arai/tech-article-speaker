@@ -22,7 +22,7 @@ BookmarkRouter.get(
 );
 BookmarkRouter.post(
   "/:id/summarize",
-  authMiddleware,
+  // authMiddleware,
   async (req: SummarizeBookmarkRequest, res) => {
     await bookmarkController.summarizeBookmark(req, res);
   }
