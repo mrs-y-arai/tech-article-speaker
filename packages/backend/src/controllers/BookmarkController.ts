@@ -27,6 +27,10 @@ export class BookmarkController {
     const { url } = req.body;
     const { userId } = req.query;
 
+    console.log("createBookmark");
+    console.log("url", url);
+    console.log("userId", userId);
+
     await this.createBookmarkUseCase.execute({
       url,
       userId,
@@ -76,8 +80,11 @@ export class BookmarkController {
     res: Response
   ) => {
     try {
+      console.log("Request URL:", req.originalUrl);
       const { id } = req.params;
       const { userId } = req.query;
+
+      console.log("summarizeBookmark");
 
       await this.summarizeBookmarkUseCase.execute({
         bookmarkId: id,

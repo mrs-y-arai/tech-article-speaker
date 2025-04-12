@@ -60,7 +60,7 @@ export class BookmarkRepository {
     title?: string;
     content?: string;
     url?: string;
-    audioPath?: string;
+    audioPath?: string | null;
   }) => {
     return this.prisma.bookmarks.update({
       where: {

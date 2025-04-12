@@ -28,11 +28,15 @@ export class SummarizeBookmarkUseCase {
 
     if (!summarizedContent) return null;
 
+    const { title, url, audio_path } = bookmark;
+
     const [_, ttsFile] = await Promise.all([
       this.bookmarkRepository.update({
         id: params.bookmarkId,
         userId: params.userId,
-        title: summarizedContent.title,
+        title,
+        url,
+        audioPath: audio_path,
         content: summarizedContent.content,
       }),
       generateTTS({ input: summarizedContent.content }),
