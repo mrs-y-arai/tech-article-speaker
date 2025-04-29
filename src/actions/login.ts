@@ -17,60 +17,74 @@ export type LoginFormState = {
 };
 
 export async function login(state: LoginFormState, formData: FormData) {
-  const supabaseAuth = await createAuthClient();
+  try {
+    const supabaseAuth = await createAuthClient();
 
-  const email = formData.get("email");
-  const password = formData.get("password");
+    const email = formData.get("email");
+    const password = formData.get("password");
 
-  const schema = z.object({
-    email: z
-      .string()
-      .min(1)
-      .max(255)
-      .email("メールアドレスの形式で入力してください"),
-    password: z.string().min(1).max(255).superRefine(passwordRule()),
-  });
+    const schema = z.object({
+      email: z
+        .string()
+        .min(1)
+        .max(255)
+        .email("メールアドレスの形式で入力してください"),
+      password: z.string().min(1).max(255).superRefine(passwordRule()),
+    });
 
-  const validateResult = schema.safeParse({
-    email,
-    password,
-  });
+    const validateResult = schema.safeParse({
+      email,
+      password,
+    });
 
-  if (!validateResult.success) {
-    const formattedErrors = validateResult.error.format();
-    return {
-      isSuccess: false,
-      errors: formattedErrors,
-    };
-  }
+    if (!validateResult.success) {
+      const formattedErrors = validateResult.error.format();
+      return {
+        isSuccess: false,
+        errors: formattedErrors,
+      };
+    }
 
-  const { error } = await supabaseAuth.auth.signInWithPassword({
-    email: validateResult.data.email,
-    password: validateResult.data.password,
-  });
+    const { error } = await supabaseAuth.auth.signInWithPassword({
+      email: validateResult.data.email,
+      password: validateResult.data.password,
+    });
 
-  if (error) {
-    // CustomLogger.error({
-    //   error,
-    //   fileName: "src/actions/login.ts",
-    //   functionName: "login",
-    // });
+    if (error) {
+      // CustomLogger.error({
+      //   error,
+      //   fileName: "src/actions/login.ts",
+      //   functionName: "login",
+      // });
 
-    // if (
-    //   SUPABASE_AUTH_ERROR_CODE_MESSAGE.INVALID_CREDENTIALS.code === error.code
-    // ) {
-    //   return {
-    //     isSuccess: false,
-    //     apiError:
-    //       "メールアドレスとパスワード、またはログイン方法が正しいか確認してください。",
-    //   };
-    // }
+      // if (
+      //   SUPABASE_AUTH_ERROR_CODE_MESSAGE.INVALID_CREDENTIALS.code === error.code
+      // ) {
+      //   return {
+      //     isSuccess: false,
+      //     apiError:
+      //       "メールアドレスとパスワード、またはログイン方法が正しいか確認してください。",
+      //   };
+      // }
+
+      return {
+        isSuccess: false,
+        apiError: "エラーが発生しました",
+      };
+    }
+
+    redirect("/");
+  } catch (error) {
+    if (error instanceof Error) {
+      return {
+        isSuccess: false,
+        apiError: error.message,
+      };
+    }
 
     return {
       isSuccess: false,
       apiError: "エラーが発生しました",
     };
   }
-
-  redirect("/");
 }
