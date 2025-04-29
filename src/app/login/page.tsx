@@ -16,6 +16,12 @@ export default function LoginPage() {
       <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md mx-auto">
         <h1 className="mb-4 text-center text-2xl font-bold">ログイン</h1>
 
+        {state.apiError && (
+          <p className="mb-4 text-sm text-destructive">
+            Error:{state.apiError}
+          </p>
+        )}
+
         <form action={dispatch}>
           <div className="mb-2">
             <label htmlFor="email" className="mb-2 block text-sm font-medium">
