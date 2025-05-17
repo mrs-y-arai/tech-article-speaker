@@ -6,7 +6,6 @@ import { BookmarkRepository } from "~/server/repositories/BookmarkRepository";
 import { createBookmarkRequestSchema } from "~/schemas/request/bookmark";
 import { load } from "cheerio";
 import { createAuthClient } from "~/libs/supabase/supabaseAuthInit";
-import { SummarizeBookmarkUseCase } from "~/server/services/SummarizeBookmarkUseCase";
 
 export type CreateBookmarkState =
   | {
@@ -61,12 +60,6 @@ export async function createBookmark(
       title,
       url: parsedUrl.data.url,
       user_id: user.data.user.id,
-    });
-
-    const { execute } = await SummarizeBookmarkUseCase();
-    await execute({
-      bookmarkId: bookmark.id,
-      userId: user.data.user.id,
     });
 
     revalidatePath("/");
